@@ -1,0 +1,25 @@
+{
+  "name": "chronoview",
+  "packageManager": "npm@8.15.1",
+  "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "turbo": "^2.1.2"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "echo 'Running tests' && exit 0",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}
