@@ -1,28 +1,15 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+// import { useEffect, useState } from 'react';
+import SignUpPage from './pages/auth/SignUpPage';
+// import SingInPage from './pages/auth/SingInPage';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
-
-  useEffect(() => {
-    fetch('/api')
-      .then((res) => res.text())
-      .then(setGreeting);
-  }, []);
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>{greeting}</h1>
+      <SignUpPage />
+      {/* <SingInPage /> */}
     </>
   );
 }
