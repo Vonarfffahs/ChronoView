@@ -32,10 +32,6 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  // async signIn(@Body() signInDto: SignInDto) {
-  //   const { username, password } = signInDto;
-  //   return this.authService.signIn(username, password);
-  // }
   async login(@Body() signInDto: SignInDto) {
     const user = await this.authService.validateUser(
       signInDto.username,
@@ -54,7 +50,7 @@ export class AuthController {
     return this.authService.signUp(createUserDto);
   }
 
-  @ApiBearerAuth() // Add auth button in Swagger
+  @ApiBearerAuth() // Adds auth button in Swagger
   @ApiOperation({ summary: 'Get current user profile' })
   @ApiResponse({
     status: 200,

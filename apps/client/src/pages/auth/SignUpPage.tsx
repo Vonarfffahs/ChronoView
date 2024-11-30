@@ -65,6 +65,7 @@ function SignUpPage() {
               placeholder="Enter username"
               value={formData.username}
               onChange={handleChange}
+              required
             />
           </Form.Group>
 
@@ -75,6 +76,7 @@ function SignUpPage() {
               placeholder="Enter email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
           </Form.Group>
 
@@ -86,6 +88,7 @@ function SignUpPage() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
+                required
               />
               <InputGroup.Text>
                 <i
