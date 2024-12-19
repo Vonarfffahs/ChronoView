@@ -15,7 +15,6 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
 import { SignInDto } from './dto/sign-in.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { LocalAuthGuard } from './local-auth.guard';
@@ -57,7 +56,6 @@ export class AuthController {
     description: 'User profile returned successfully',
   })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  // @UseGuards(AuthGuard)
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {

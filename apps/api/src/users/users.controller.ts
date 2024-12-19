@@ -55,7 +55,9 @@ export class UsersController {
   @Get(':username')
   @Roles(UserRole.Admin) //?
   findOne(@Param('username') username: string) {
-    return this.usersService.findOne(username);
+    return this.usersService.findOne({
+      username: username,
+    });
   }
 
   @ApiOperation({ summary: 'Update user' })

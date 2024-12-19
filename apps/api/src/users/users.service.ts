@@ -29,8 +29,20 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.userRepository.findOneBy({ username });
+  async findOne(criteria: {
+    username?: string;
+    email?: string;
+  }): Promise<User | undefined> {
+    const { username, email } = criteria;
+
+    if (username) {
+      return this.userRepository.findOneBy({ username });
+    }
+    if (email) {
+      return this.userRepository.findOneBy({ email });
+    }
+
+    return undefined;
   }
 
   update(id: number, updateUserDto: UpdateUserDto): Promise<User> {

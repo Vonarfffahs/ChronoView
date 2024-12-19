@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -9,7 +10,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3000', // local Nest app
         changeOrigin: true,
-        secure: false, // Для роботи з незахищеним сервером
+        secure: false,
       },
     },
   },
