@@ -19,8 +19,11 @@ export class CommentsService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async create(createCommentDto: CreateCommentDto): Promise<Comment> {
-    const { content, userId } = createCommentDto;
+  async create(
+    createCommentDto: CreateCommentDto,
+    userId: number,
+  ): Promise<Comment> {
+    const { content } = createCommentDto;
 
     const user = await this.usersRepository.findOne({ where: { id: userId } });
     if (!user) {
@@ -52,8 +55,8 @@ export class CommentsService {
   async update(
     id: number,
     updateCommentDto: UpdateCommentDto,
+    userId: number,
   ): Promise<Comment> {
-    const { userId } = updateCommentDto;
     const comment = await this.findOne(id);
     if (comment.user.id !== userId) {
       throw new ForbiddenException('You can only update your own comments');

@@ -6,7 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database.module';
 import { AuthModule } from './auth/auth.module';
 import { CommentsModule } from './comments/comments.module';
-import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
