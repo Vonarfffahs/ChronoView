@@ -3,7 +3,8 @@ import SignUpPage from './pages/auth/SignUpPage';
 import SingInPage from './pages/auth/SingInPage';
 import HomePage from './pages/home/HomePage';
 import UserProfilePage from './pages/userProfile/UserProfilePage';
-import NotFoundPage from './pages/notFoundPage/NotFoundPage';
+import NotFoundPage from './pages/notFound/NotFoundPage';
+import MapPage from './pages/map/MapPage';
 import Menubar from './components/navbar/Menubar';
 
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<SignUpPage />} />
         <Route path="/login" element={<SingInPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/map" element={<MapPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

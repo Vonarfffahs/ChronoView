@@ -51,6 +51,9 @@ function Menubar() {
               <NavLink to="/" className="nav-link">
                 Home
               </NavLink>
+              <NavLink to="/map" className="nav-link">
+                Map
+              </NavLink>
             </Nav>
 
             <Nav className="d-flex justify-content-end">
