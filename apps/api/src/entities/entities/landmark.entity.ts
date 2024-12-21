@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { PrimaryGeneratedColumn, Column, Entity, Point } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
 
 @Entity()
 export class Landmark {
@@ -16,6 +16,6 @@ export class Landmark {
   location: string;
 
   @ApiProperty()
-  @Column({ type: 'point', spatialFeatureType: 'Point', srid: 4326 })
-  coordinates: Point;
+  @Column({ type: 'geometry', spatialFeatureType: 'Point', srid: 4326 })
+  coordinates: { type: string; coordinates: [number, number] };
 }

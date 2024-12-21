@@ -88,7 +88,7 @@ export class EntitiesService {
     return this.figureRepository.delete(id);
   }
 
-  Landmark;
+  //Landmark;
   async createLandmark(
     createLandmarkDto: CreateLandmarkDto,
   ): Promise<Landmark> {

@@ -1,9 +1,48 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-import { IsNotEmpty, IsString, Matches } from 'class-validator';
-import { Point } from 'typeorm';
+import { IsNotEmpty, IsObject, IsString } from 'class-validator';
 
-const coordinatesRegEx = /^-?\d{1,2}\.\d+,\s?-?\d{1,3}\.d+$/; // x.xx, y.yy
+import {
+  registerDecorator,
+  ValidationOptions,
+  ValidationArguments,
+} from 'class-validator';
+
+export function IsGeoJSONPoint(validationOptions?: ValidationOptions) {
+  return function (object: object, propertyName: string) {
+    registerDecorator({
+      name: 'IsGeoJSONPoint',
+      target: object.constructor,
+      propertyName: propertyName,
+      options: validationOptions,
+      validator: {
+        validate(value: any) {
+          if (
+            value &&
+            typeof value === 'object' &&
+            value.type === 'Point' &&
+            Array.isArray(value.coordinates) &&
+            value.coordinates.length === 2
+          ) {
+            const [lat, lon] = value.coordinates;
+            return (
+              typeof lat === 'number' &&
+              typeof lon === 'number' &&
+              lat >= -90 &&
+              lat <= 90 &&
+              lon >= -180 &&
+              lon <= 180
+            );
+          }
+          return false;
+        },
+        defaultMessage(args: ValidationArguments) {
+          return `${args.property} must be a valid GeoJSON Point with latitude and longitude in valid ranges`;
+        },
+      },
+    });
+  };
+}
 
 export class CreateLandmarkDto {
   @ApiProperty()
@@ -16,11 +55,12 @@ export class CreateLandmarkDto {
   @IsString()
   location: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @Matches(coordinatesRegEx, {
-    message:
-      'Please enter the latitude and longitude coordinates in decimal with "." separator.',
+  @ApiProperty({
+    description: 'GeoJSON Point object',
+    example: { type: 'Point', coordinates: [1.1, 1.2] },
   })
-  coordinates: Point;
+  @IsNotEmpty()
+  @IsObject()
+  @IsGeoJSONPoint()
+  coordinates: { type: string; coordinates: [number, number] };
 }
