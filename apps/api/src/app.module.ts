@@ -16,8 +16,6 @@ import { EntitiesModule } from './entities/entities.module';
     DatabaseModule,
     UsersModule,
     AuthModule,
-    EntitiesModule,
-    // RunningRealityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
