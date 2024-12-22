@@ -13,7 +13,9 @@ export class AuthService {
 
   async validateUser(username: string, pass: string) {
     // Find the user
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne({
+      username: username,
+    });
     const hash = user.password;
     // Check if the password is correct
     const match = await bcrypt.compare(pass, hash).then(function (
@@ -45,9 +47,18 @@ export class AuthService {
 
   async signUp(payload: CreateUserDto): Promise<{ message: string }> {
     // Check if the user already exists
-    const existingUser = await this.usersService.findOne(payload.username);
-    if (existingUser) {
+    const existingUsername = await this.usersService.findOne({
+      username: payload.username,
+    });
+    if (existingUsername) {
       throw new UnauthorizedException('Username is already taken');
+    }
+
+    const existingEmail = await this.usersService.findOne({
+      email: payload.email,
+    });
+    if (existingEmail) {
+      throw new UnauthorizedException('Email is already registered');
     }
 
     // Hash the password

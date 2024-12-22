@@ -1,0 +1,8 @@
+.active {
+  background-color: #292f34 !important;
+  border-radius: 0.5rem;
+}
+
+.navbar a {
+  color: #fff7e8 !important;
+}

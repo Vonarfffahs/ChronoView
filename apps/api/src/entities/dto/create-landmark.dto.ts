@@ -1,9 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-import { IsNotEmpty, IsString, Matches } from 'class-validator';
-import { Point } from 'typeorm';
+import { IsNotEmpty, IsObject, IsString } from 'class-validator';
 
-const coordinatesRegEx = /^-?\d{1,2}\.\d+,\s?-?\d{1,3}\.d+$/; // x.xx, y.yy
+import { IsGeoJSONPoint } from '../geojson-point.decorator';
 
 export class CreateLandmarkDto {
   @ApiProperty()
@@ -16,11 +15,12 @@ export class CreateLandmarkDto {
   @IsString()
   location: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @Matches(coordinatesRegEx, {
-    message:
-      'Please enter the latitude and longitude coordinates in decimal with "." separator.',
+  @ApiProperty({
+    description: 'GeoJSON Point object',
+    example: { type: 'Point', coordinates: [1.1, 1.2] },
   })
-  coordinates: Point;
+  @IsNotEmpty()
+  @IsObject()
+  @IsGeoJSONPoint()
+  coordinates: { type: string; coordinates: [number, number] };
 }

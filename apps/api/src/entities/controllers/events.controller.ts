@@ -21,8 +21,8 @@ import {
 import { Event } from '../entities/event.entity';
 import { EventType } from '../event-type.enum';
 import { EntitiesService } from '../entities.service';
-import { Roles } from '../../users/user-roles.decorator';
-import { UserRole } from '../../users/user-role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { UserRole } from 'src/auth/enums/role.enum';
 
 @ApiTags('events')
 @Controller('events')

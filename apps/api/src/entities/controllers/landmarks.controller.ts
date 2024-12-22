@@ -18,8 +18,8 @@ import {
 } from '@nestjs/swagger';
 import { Landmark } from '../entities/landmark.entity';
 import { EntitiesService } from '../entities.service';
-import { Roles } from 'src/users/user-roles.decorator';
-import { UserRole } from 'src/users/user-role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { UserRole } from 'src/auth/enums/role.enum';
 
 @ApiTags('landmarks')
 @Controller('landmark')

@@ -18,9 +18,13 @@ export class Event {
 
   @ApiProperty()
   @Column({ type: 'date' })
-  date: string; // YYYY-MM-DD
+  date: string; // January 8, 99 BC
 
   @ApiProperty()
   @Column({ type: 'enum', enum: EventType })
   type: EventType;
+
+  @ApiProperty()
+  @Column({ type: 'geometry', spatialFeatureType: 'Point', srid: 4326 })
+  coordinates: { type: string; coordinates: [number, number] };
 }

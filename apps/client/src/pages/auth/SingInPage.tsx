@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Form, Button, Alert, InputGroup } from 'react-bootstrap';
 
 import './auth.css';
@@ -53,7 +53,7 @@ function SingInPage() {
 
   return (
     <>
-      <Container className="container-center">
+      <Container className="container-center mt-4">
         <h1 className="text-center">Sign In</h1>
         <Form className="sign mt-3" onSubmit={handleSubmit}>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -71,7 +71,7 @@ function SingInPage() {
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-1" controlId="password">
+          <Form.Group className="mb-3" controlId="password">
             <Form.Label>Password</Form.Label>
             <InputGroup>
               <Form.Control
@@ -89,8 +89,14 @@ function SingInPage() {
               </InputGroup.Text>
             </InputGroup>
           </Form.Group>
-          <Form.Group className="ms-1 mb-3" controlId="formBasicCheckbox">
+          <Form.Group
+            className="ms-1 mb-3 d-flex justify-content-between"
+            controlId="formBasicCheckbox"
+          >
             <Form.Check type="checkbox" label="Remember me" />
+            <Form.Label>
+              Don't have an account? <Link to="/register">Sign up</Link>
+            </Form.Label>
           </Form.Group>
 
           <Form.Group className="text-center">
