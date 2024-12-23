@@ -19,6 +19,9 @@ import { Module } from '@nestjs/common';
         synchronize: true,
         logging: true,
         keepConnectionAlive: true,
+        // ssl: {
+        //   rejectUnauthorized: false, // Додайте для Render
+        // },
       }),
     }),
   ],

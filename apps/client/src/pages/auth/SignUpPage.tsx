@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Alert, Button, Container, Form, InputGroup } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './auth.css';
 
@@ -15,6 +16,7 @@ function SignUpPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [showPass, setShowPass] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -36,6 +38,7 @@ function SignUpPage() {
       if (response.ok) {
         const result = await response.json();
         setSuccess(result.message || 'Registration successful!');
+        setTimeout(() => navigate('/login'), 3000);
       } else {
         const error = await response.json();
         setError(error.message || 'Registration failed');
@@ -52,7 +55,7 @@ function SignUpPage() {
 
   return (
     <>
-      <Container className="container-center">
+      <Container className="container-center mt-4">
         <h1 className="text-center">Sign Up</h1>
         <Form className="sign mt-3" onSubmit={handleSubmit}>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -80,7 +83,7 @@ function SignUpPage() {
             />
           </Form.Group>
 
-          <Form.Group className="mb-1" controlId="password">
+          <Form.Group className="mb-3" controlId="password">
             <Form.Label>Password</Form.Label>
             <InputGroup>
               <Form.Control
@@ -98,8 +101,14 @@ function SignUpPage() {
               </InputGroup.Text>
             </InputGroup>
           </Form.Group>
-          <Form.Group className="ms-1 mb-3 " controlId="formBasicCheckbox">
+          <Form.Group
+            className="ms-1 mb-3 d-flex justify-content-between"
+            controlId="formBasicCheckbox"
+          >
             <Form.Check type="checkbox" label="Remember me" />
+            <Form.Label>
+              Already have an account? <Link to="/login">Sign in</Link>
+            </Form.Label>
           </Form.Group>
 
           <Form.Group className="text-center">

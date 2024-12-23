@@ -21,5 +21,18 @@
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "dependencies": {
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/swagger": "^8.1.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "dotenv": "^16.4.7",
+    "jwt-decode": "^4.0.0",
+    "pg": "^8.13.1",
+    "react-icons": "^5.4.0",
+    "react-simple-maps": "^3.0.0",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "^0.3.20"
+  }
 }
