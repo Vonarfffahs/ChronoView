@@ -6,7 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database.module';
 import { AuthModule } from './auth/auth.module';
 import { EntitiesModule } from './entities/entities.module';
-// import { RunningRealityModule } from './running-reality/running-reality.module';
 
 @Module({
   imports: [
@@ -16,6 +15,7 @@ import { EntitiesModule } from './entities/entities.module';
     DatabaseModule,
     UsersModule,
     AuthModule,
+    EntitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
