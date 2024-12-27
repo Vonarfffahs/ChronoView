@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { PrimaryGeneratedColumn, Column, Entity, OneToMany } from 'typeorm';
-import { Comment } from 'src/comments/entities/comment.entity';
+import { Comment } from '../../comments/entities/comment.entity';
 
 @Entity()
 export class User {
