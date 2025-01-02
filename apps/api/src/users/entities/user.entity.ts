@@ -18,7 +18,7 @@ export class User {
 
   @ApiProperty()
   @Column({ type: 'varchar' })
-  password: string;
+  password?: string;
 
   @ApiProperty()
   @Column({ type: 'enum', enum: ['user', 'admin'] })
