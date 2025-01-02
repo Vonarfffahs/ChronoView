@@ -1,5 +1,7 @@
 {
-  "files": [],
+  "files": [
+    // Remove the missing file reference if it's not present
+  ],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

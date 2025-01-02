@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node", //
+    "target": "ES2021",
+    "lib": ["ES2021", "dom"],
+    "module": "commonjs", //
+    "types": ["cypress"],
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}
