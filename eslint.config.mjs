@@ -6,7 +6,12 @@ import tseslint from 'typescript-eslint';
 export default [
   // Ігноруємо dist папку глобально
   {
-    ignores: ['**/dist/**'],
+    ignores: [
+      '**/dist/**',
+      '**/cypress/**',
+      '**/test/**',
+      '**/*.config.{ts,js}',
+    ],
   },
 
   // Конфігурація для JavaScript та TypeScript файлів
