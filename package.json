@@ -2,7 +2,13 @@
   "name": "chronoview",
   "packageManager": "npm@8.15.1",
   "devDependencies": {
-    "husky": "^9.1.6",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "husky": "^8.0.0",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "turbo": "^2.1.2"
@@ -11,7 +17,8 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "echo 'Running tests' && exit 0",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "eslint ."
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,jsx}": [
@@ -21,5 +28,18 @@
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "dependencies": {
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/swagger": "^8.1.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "dotenv": "^16.4.7",
+    "jwt-decode": "^4.0.0",
+    "pg": "^8.13.1",
+    "react-icons": "^5.4.0",
+    "react-simple-maps": "^3.0.0",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "^0.3.20"
+  }
 }

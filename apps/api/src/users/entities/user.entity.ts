@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity, OneToMany } from 'typeorm';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 @Entity()
 export class User {
@@ -17,7 +18,7 @@ export class User {
 
   @ApiProperty()
   @Column({ type: 'varchar' })
-  password: string;
+  password?: string;
 
   @ApiProperty()
   @Column({ type: 'enum', enum: ['user', 'admin'] })
@@ -26,4 +27,8 @@ export class User {
   @ApiProperty()
   @Column({ type: 'boolean' })
   banStatus: boolean;
+
+  @ApiProperty()
+  @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
+  comments: Comment[];
 }
