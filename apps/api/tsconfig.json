@@ -10,6 +10,12 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@users/*": ["src/users/*"],
+      "@comments/*": ["src/comments/*"],
+      "@auth/*": ["src/auth/*"],
+      "@entities/*": ["src/entities/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
