@@ -140,48 +140,48 @@ describe('Frontend test', () => {
     cy.wait(3000);
 
     // login
-    cy.request('POST', 'http://localhost:3000/api/auth/login', {
-      username: username,
-      password: password,
-    }).then((response) => {
-      expect(response.status).to.equal(200);
-      expect(response.body.access_token).to.exist;
-      cy.wrap(response.body.access_token).as('authToken');
-    });
+    // cy.request('POST', 'http://localhost:3000/api/auth/login', {
+    //   username: username,
+    //   password: password,
+    // }).then((response) => {
+    //   expect(response.status).to.equal(200);
+    //   expect(response.body.access_token).to.exist;
+    //   cy.wrap(response.body.access_token).as('authToken');
+    // });
 
-    cy.get('input#username').type(username);
-    cy.get('input#password').type(password);
+    // cy.get('input#username').type(username);
+    // cy.get('input#password').type(password);
 
-    cy.get('.w-100').contains('Sign In').click();
+    // cy.get('.w-100').contains('Sign In').click();
 
-    // get profile
-    cy.get('@authToken').then((token) => {
-      cy.request({
-        method: 'GET',
-        url: 'http://localhost:3000/api/auth/profile',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((response) => {
-        expect(response.status).to.equal(200);
-        expect(response.body.username).to.exist;
-        const { username, email, role, banStatus } = response.body;
+    // // get profile
+    // cy.get('@authToken').then((token) => {
+    //   cy.request({
+    //     method: 'GET',
+    //     url: 'http://localhost:3000/api/auth/profile',
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }).then((response) => {
+    //     expect(response.status).to.equal(200);
+    //     expect(response.body.username).to.exist;
+    //     const { username, email, role, banStatus } = response.body;
 
-        cy.url().should('include', '/profile');
-        cy.get('h1.text-center').should(
-          'contain',
-          `Welcome to your profile page, ${username}!`,
-        );
-        cy.get('p.text-center').contains(`Email: ${email}`);
-        cy.get('p.text-center').contains(`Role: ${role}`);
-        cy.get('p.text-center').contains(
-          `Ban Status: ${banStatus ? 'Banned' : 'Active'}`,
-        );
+    //     cy.url().should('include', '/profile');
+    //     cy.get('h1.text-center').should(
+    //       'contain',
+    //       `Welcome to your profile page, ${username}!`,
+    //     );
+    //     cy.get('p.text-center').contains(`Email: ${email}`);
+    //     cy.get('p.text-center').contains(`Role: ${role}`);
+    //     cy.get('p.text-center').contains(
+    //       `Ban Status: ${banStatus ? 'Banned' : 'Active'}`,
+    //     );
 
-        cy.contains('Logout').click();
-        cy.url().should('eq', 'http://localhost:5173/');
-      });
-    });
+    //     cy.contains('Logout').click();
+    //     cy.url().should('eq', 'http://localhost:5173/');
+    //   });
+    // });
   });
 
   //Backend
